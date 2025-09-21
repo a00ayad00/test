@@ -1,10 +1,40 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from fastapi.testclient import TestClient
 from fastapi.websockets import WebSocket
 import uvicorn
 
 app = FastAPI()
 
+@app.get("/")
+async def home():
+    html_content = """
+        <html>
+            <head>
+                <title>Smart Vision API</title>
+            </head>
+            <body>
+                <h1>
+                    Welcome to Smart Vision API
+                </h1>
+                <h2>
+                The current available endpoints are:
+                </h2>
+                <h3>
+                    <ul>
+                        <li> Smart Vision </li>
+                        <li> Clothes Image Classification </li>
+                        <li> Object Counting </li>
+                        <li> Streaming camera (simple) </li>
+                        <li> VQA (MoonDream model) </li>
+                        <li> Rased for Construction Process </li>
+                        <li> Chooch.ai endpoints </li>
+                    </ul>
+                </h3>
+            </body>
+        </html>
+    """
+    return HTMLResponse(content=html_content, status_code=200)
 
 @app.websocket("/ws")
 async def websocket(websocket: WebSocket):
