@@ -52,4 +52,5 @@ def test_websocket():
 
 if __name__ == "__main__":
     # test_websocket()
-    uvicorn.run("test:app", host="0.0.0.0", port=6000, reload=True)
+
+    uvicorn.run("test:app", host="0.0.0.0", port=8000, reload=True)
